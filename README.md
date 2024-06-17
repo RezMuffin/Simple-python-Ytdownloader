@@ -2,9 +2,7 @@
 
 Simple Youtube Download
 
-<p align="center">
-  <img src="https://tenor.com/dCMAreGIlQw.gif" alt="gif Shikanoko" />
-</p>
+<div class="tenor-gif-embed" data-postid="2905325976641914654" align="center" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/dancing-girl-gif-2905325976641914654">Dancing Girl GIF</a>from <a href="https://tenor.com/search/dancing+girl-gifs">Dancing Girl GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
 # Requirement
 
