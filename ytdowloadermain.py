@@ -4,6 +4,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import os
 import threading
+from pydub import AudioSegment
 
 def get_streams(url):
     yt = YouTube(url)
@@ -13,10 +14,22 @@ def get_streams(url):
 
 def download_stream(stream, output_path):
     try:
-        stream.download(output_path)
-        messagebox.showinfo("Success", "Download completed!")
+        downloaded_file = stream.download(output_path)
+        return downloaded_file
     except Exception as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
+        return None
+
+def convert_to_mp3(file_path):
+    try:
+        audio = AudioSegment.from_file(file_path)
+        mp3_path = file_path.rsplit('.', 1)[0] + '.mp3'
+        audio.export(mp3_path, format='mp3')
+        os.remove(file_path)  # menghapus file asli setelah konversi
+        return mp3_path
+    except Exception as e:
+        messagebox.showerror("Error", f"An error occurred during conversion: {e}")
+        return None
 
 def download():
     url = url_entry.get()
@@ -36,7 +49,14 @@ def download():
         download_thread.start()
     elif selected_audio != "None":
         audio_stream = next(stream for stream in audio_streams if stream.abr == selected_audio)
-        download_thread = threading.Thread(target=download_stream, args=(audio_stream, output_path))
+        def audio_download_and_convert():
+            downloaded_file = download_stream(audio_stream, output_path)
+            if downloaded_file:
+                mp3_file = convert_to_mp3(downloaded_file)
+                if mp3_file:
+                    messagebox.showinfo("Success", "Download and conversion to MP3 completed!")
+        
+        download_thread = threading.Thread(target=audio_download_and_convert)
         download_thread.start()
     else:
         messagebox.showerror("Error", "Please select a video or audio quality.")
