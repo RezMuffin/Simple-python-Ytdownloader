@@ -6,9 +6,8 @@ Simple Youtube Download
 
 # Requirement
 
-- install pytube
-- install pydub
-- install [ffmpeg](https://ffmpeg.org/download.html)
+- Install ytdlp
+- Install [ffmpeg](https://ffmpeg.org/download.html)
 - Add ffmpeg to your computer PATH
 
 # How to Use
@@ -16,5 +15,5 @@ Simple Youtube Download
 - Run the bat file
 - Enter your YT URL
 - Choose Video and Audio Quality
-- Choose Video to "None" for Audio only
+- Change your file download directory
 - Click download and wait until done
